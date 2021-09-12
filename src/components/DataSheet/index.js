@@ -32,8 +32,8 @@ const DataSheet = ({elements}) => {
 const StyledSheet = styled.div`
   border-radius: 5px;
   border: 1px solid #cccccc;
-  width: 90vw;
-  height: 25vh;
+  width: 90%;
+  flex: 2 1;
 `;
 
 export default DataSheet;

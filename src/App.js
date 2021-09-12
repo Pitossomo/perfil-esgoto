@@ -1,5 +1,6 @@
 import DataSheet from "./components/DataSheet";
 import Svg from "./components/Svg";
+import Buttons from "./components/Buttons"
 import styled from "styled-components";
 
 function App() {
@@ -35,18 +36,19 @@ function App() {
 
   return (
     <Wrapper>
-      <Svg elements={elements} />
       <DataSheet elements={elements} />
+      <Buttons />
+      <Svg elements={elements} />
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
   height: calc(100vh - 32px);
+  padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px;
   justify-content: space-around;  
 `;
 
