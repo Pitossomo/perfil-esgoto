@@ -6,6 +6,7 @@ const Buttons = () => {
       <button>Carregar...</button>
       <button>Salvar...</button>
       <button>Gerar Perfil</button>
+      <button>Exportar CAD...</button>
     </StyledDiv>
   );
 }

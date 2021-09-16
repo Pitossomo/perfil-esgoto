@@ -1,41 +1,41 @@
-import DataSheet from "./components/DataSheet";
-import Svg from "./components/Svg";
-import Buttons from "./components/Buttons"
+import { DataSheet, Svg, Buttons, InputLine } from "./components";
 import styled from "styled-components";
+import { useState } from "react";
 
 function App() {
-  const elements = [
+  const [elements, setElements] = useState([
     {
       id: 1,
-      nt1: 100,
+      nt1: 10,
       prof1: 1.3,
-      nt2: 99,
+      nt2: 9,
       prof2: 1,
       dist: 80,
       diam: 100,
     },
     {
       id: 2,
-      nt1: 99,
+      nt1: 9,
       prof1: 1.3,
-      nt2: 98,
+      nt2: 8,
       prof2: 1.3,
       dist: 60,
       diam: 100,
     },
     {
       id: 3,
-      nt1: 98,
+      nt1: 8,
       prof1: 1.3,
-      nt2: 95,
+      nt2: 5,
       prof2: 1.3,
       dist: 80,
       diam: 150,
     }
-  ];
+  ]);
 
   return (
     <Wrapper>
+      <InputLine elements={elements} setElements={setElements} />
       <DataSheet elements={elements} />
       <Buttons />
       <Svg elements={elements} />

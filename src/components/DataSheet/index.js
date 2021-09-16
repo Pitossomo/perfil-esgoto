@@ -1,11 +1,29 @@
 import styled from "styled-components";
 // import ReactDataSheet from "react-datasheet";
-//import { useState } from "react";
+// import { useState } from "react";
 
 const DataSheet = ({elements}) => {
-  const column = ["id","nt1","prof1","nf1","nt2","prof2","nf2","dist","diam","decl."];
+  const column = ["id","nt1","prof1","nf1","nt2","prof2","nf2","dist","diam","decl.","vazao", "yD", "ttrat", "veloc"];
   const DEC_DIGITS = 2;
-  console.log(elements)
+
+  const renderReadOnlyRow = (el) => (
+    <tr key={`row${el.id}`}> 
+      <TdCenter>{el.id}</TdCenter> 
+      <TdRight>{el.nt1.toFixed(DEC_DIGITS)}</TdRight>
+      <TdRight>{el.prof1.toFixed(DEC_DIGITS)}</TdRight>
+      <TdRight>{(el.nt1-el.prof1).toFixed(DEC_DIGITS)}</TdRight>
+      <TdRight>{(el.nt2).toFixed(DEC_DIGITS)}</TdRight>
+      <TdRight>{(el.prof2).toFixed(DEC_DIGITS)}</TdRight>
+      <TdRight>{(el.nt2-el.prof2).toFixed(DEC_DIGITS)}</TdRight>
+      <TdRight>{(el.dist).toFixed(DEC_DIGITS)}</TdRight>
+      <TdCenter>{(el.diam).toFixed(0)}</TdCenter>
+      <TdRight>{(((el.nt1-el.prof1)-(el.nt2-el.prof2))/el.dist*100).toFixed(DEC_DIGITS)+"%"}</TdRight>
+      <TdRight>{(el.vazao || 1.5).toFixed(DEC_DIGITS)+"%"}</TdRight>
+      <TdRight>50%</TdRight>
+      <TdRight>1 MPa</TdRight>
+      <TdRight>2 l/s</TdRight>
+    </tr>
+  );
 
   return (
     <StyledSheet>
@@ -25,24 +43,7 @@ const DataSheet = ({elements}) => {
         <th>T.Trat.</th>
         <th>Veloc.</th>
       </tr>
-      { elements.map(el => (
-        <tr key={el.id}> 
-          <TdCenter>{el.id}</TdCenter> 
-          <TdRight>{el.nt1.toFixed(DEC_DIGITS)}</TdRight>
-          <TdRight>{el.prof1.toFixed(DEC_DIGITS)}</TdRight>
-          <TdRight>{(el.nt1-el.prof1).toFixed(DEC_DIGITS)}</TdRight>
-          <TdRight>{(el.nt2).toFixed(DEC_DIGITS)}</TdRight>
-          <TdRight>{(el.prof2).toFixed(DEC_DIGITS)}</TdRight>
-          <TdRight>{(el.nt2-el.prof2).toFixed(DEC_DIGITS)}</TdRight>
-          <TdRight>{(el.dist).toFixed(DEC_DIGITS)}</TdRight>
-          <TdCenter>{(el.diam).toFixed(0)}</TdCenter>
-          <TdRight>{(((el.nt1-el.prof1)-(el.nt2-el.prof2))/el.dist*100).toFixed(DEC_DIGITS)+"%"}</TdRight>
-          <TdRight>{(el.vazao || 1.5).toFixed(DEC_DIGITS)+"%"}</TdRight>
-          <TdRight>{80085}</TdRight>
-          <TdRight>{80085}</TdRight>
-          <TdRight>{80085}</TdRight>
-        </tr>
-      ))}
+      { elements?.map(el => renderReadOnlyRow(el))}
     </StyledSheet>
   );
 
