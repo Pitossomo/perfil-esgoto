@@ -1,35 +1,47 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
+import Lines from "./Lines";
 
 const Svg = ({elements}) => {
-  const DRAW_PADDING = 5;
+  const Y_SCALE = -10; // Vertical exageration scale factor;
 
   const svg = useRef();
   const linesGroup = useRef();
   const [viewBox, setViewBox] = useState(null);
+  const [stroke, setStroke] = useState(1);
 
   useEffect(() => {
     if (!svg.current) return;
 
     const { x, y, width, height } = linesGroup.current.getBBox();
+    let padding = Math.max(width, height)*0.1;
+
+    setStroke(Math.max(width,height)*0.01);
+
     setViewBox([
-      x-DRAW_PADDING, y-DRAW_PADDING, 
-      width + 2*DRAW_PADDING, height + 2*DRAW_PADDING
+      x-padding, y-padding, 
+      width + 2*padding, height + 2*padding
     ].join(' '));
   }, [])
 
+  var sumDist=0;
   return (
     <> { elements && (
       <StyledSvg ref={svg} viewBox={viewBox}>
         <g
           ref={linesGroup}
-          stroke="black" stroke-width="0.5" stroke-miterlimit="10"
+          strokeWidth={stroke} strokeMiterlimit="10"
         >
-          { elements.map(el => (
-            <line key={el.id} 
-              x1={el.nt1} x2={el.nt2} y1={el.nt1} y2={el.nt2} 
-            />
-          ))}
+          { elements.map(el => {
+            sumDist = sumDist + el.dist;
+            return (
+              <Lines key={el.id}
+                {...el}             
+                yScale={Y_SCALE}
+                x1={sumDist - el.dist} x2={sumDist}
+              />
+            )
+          })}
         </g>
       </StyledSvg>
     )} </>

@@ -3,7 +3,7 @@ import styled from "styled-components";
 // import { useState } from "react";
 
 const DataSheet = ({elements}) => {
-  const column = ["id","nt1","prof1","nf1","nt2","prof2","nf2","dist","diam","decl.","vazao", "yD", "ttrat", "veloc"];
+  //const column = ["id","nt1","prof1","nf1","nt2","prof2","nf2","dist","diam","decl.","vazao", "yD", "ttrat", "veloc"];
   const DEC_DIGITS = 2;
 
   const renderReadOnlyRow = (el) => (
@@ -27,23 +27,27 @@ const DataSheet = ({elements}) => {
 
   return (
     <StyledSheet>
-      <tr>
-        <th>Id</th>
-        <th>NTopo1</th>
-        <th>Prof1</th>
-        <th>NFund1</th>
-        <th>NTopo2</th>
-        <th>Prof2</th>
-        <th>NFund2</th>
-        <th>Dist.</th>
-        <th>DN</th>
-        <th>Decliv.</th>
-        <th>Vazão</th>
-        <th>Lâmina</th>
-        <th>T.Trat.</th>
-        <th>Veloc.</th>
-      </tr>
-      { elements?.map(el => renderReadOnlyRow(el))}
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>NTopo1</th>
+          <th>Prof1</th>
+          <th>NFund1</th>
+          <th>NTopo2</th>
+          <th>Prof2</th>
+          <th>NFund2</th>
+          <th>Dist.</th>
+          <th>DN</th>
+          <th>Decliv.</th>
+          <th>Vazão</th>
+          <th>Lâmina</th>
+          <th>T.Trat.</th>
+          <th>Veloc.</th>
+        </tr>
+      </thead>
+      <tbody>
+        { elements?.map(el => renderReadOnlyRow(el))}
+      </tbody>
     </StyledSheet>
   );
 
