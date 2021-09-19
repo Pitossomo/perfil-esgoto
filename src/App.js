@@ -1,4 +1,4 @@
-import { DataSheet, Svg, Buttons, InputLine } from "./components";
+import { DataSheet, Svg, Buttons } from "./components";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -35,7 +35,6 @@ function App() {
 
   return (
     <Wrapper>
-      <InputLine elements={elements} setElements={setElements} />
       <DataSheet elements={elements} />
       <Buttons />
       <Svg elements={elements} />
