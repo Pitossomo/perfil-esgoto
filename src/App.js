@@ -9,23 +9,23 @@ function App() {
       nt1: 10,
       prof1: 1.3,
       nt2: 9,
-      prof2: 1,
+      prof2: 1.8,
       dist: 80,
       diam: 100,
     },
     {
       id: 2,
       nt1: 9,
-      prof1: 1.3,
+      prof1: 2,
       nt2: 8,
-      prof2: 1.3,
+      prof2: 2,
       dist: 60,
       diam: 100,
     },
     {
       id: 3,
       nt1: 8,
-      prof1: 1.3,
+      prof1: 2,
       nt2: 5,
       prof2: 1.3,
       dist: 80,
@@ -35,7 +35,7 @@ function App() {
 
   return (
     <Wrapper>
-      <DataSheet elements={elements} />
+      <DataSheet elements={elements} setElements={setElements}/>
       <Buttons />
       <Svg elements={elements} />
     </Wrapper>

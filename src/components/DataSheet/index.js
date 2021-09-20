@@ -1,8 +1,11 @@
 import styled from "styled-components";
 import ReactDataSheet from "react-datasheet";
+import { Header } from "./Header";
 
-const DataSheet = ({elements, children}) => {
+const DataSheet = ({elements}) => {
   //const column = ["id","nt1","prof1","nf1","nt2","prof2","nf2","dist","diam","decl.","vazao", "yD", "ttrat", "veloc"];
+  const NDIGITS = 2;
+  
   /*
   const onChange = changes => {
     const newGrid = grid.map(row => [...row]);
@@ -14,19 +17,18 @@ const DataSheet = ({elements, children}) => {
   */
 
   let dataArray = [];
-  elements?.map(el => { dataArray.push([
-    { value: el.id },   // id
-    { value: el.nt1 },  // nt1
-    { value: el.prof1 },  // prof1
-    { value: el.nt1 - el.prof1 },  // nf1
-    { value: el.nt2 },    // nt2
-    { value: el.prof2 },    // prof2
-    { value: el.nt2 - el.prof2 },   // nf2
-    { value: el.dist },     // dist
-    { value: el.diam },     // dist
-    { value: ((el.nt1 - el.prof1) - (el.nt2 - el.prof2))/el.dist }, //decl
+  elements?.forEach(el => { dataArray.push([
+    { value: el.id.toFixed(0) },   // id
+    { value: el.nt1.toFixed(NDIGITS) },  // nt1
+    { value: el.prof1.toFixed(NDIGITS) },  // prof1
+    { value: (el.nt1 - el.prof1).toFixed(NDIGITS) },  // nf1
+    { value: (el.nt2).toFixed(NDIGITS) },    // nt2
+    { value: (el.prof2).toFixed(NDIGITS) },    // prof2
+    { value: (el.nt2 - el.prof2).toFixed(NDIGITS) },   // nf2
+    { value: (el.dist).toFixed(NDIGITS) },     // dist
+    { value: (el.diam).toFixed(0) },     // dist
+    { value: (((el.nt1 - el.prof1) - (el.nt2 - el.prof2))/el.dist*100).toPrecision(3) + "%" }, //decl
   ])});
-  console.log(dataArray);
 
   return (
     <StyledSheet
@@ -34,24 +36,7 @@ const DataSheet = ({elements, children}) => {
       valueRenderer={cell => cell.value}
       sheetRenderer={(props) => (
         <table>
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>NTopo1</th>
-              <th>Prof1</th>
-              <th>NFund1</th>
-              <th>NTopo2</th>
-              <th>Prof2</th>
-              <th>NFund2</th>
-              <th>Dist.</th>
-              <th>DN</th>
-              <th>Decliv.</th>
-              <th>Vazão</th>
-              <th>Lâmina</th>
-              <th>T.Trat.</th>
-              <th>Veloc.</th>
-            </tr>
-          </thead>
+          <Header />
           <tbody>
             {props.children}
           </tbody>
@@ -60,45 +45,16 @@ const DataSheet = ({elements, children}) => {
       //onCellsChanged={changes => onChange(changes)}
     />
   );
-
-  /* 
-  return (
-    <StyledSheet>
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>NTopo1</th>
-          <th>Prof1</th>
-          <th>NFund1</th>
-          <th>NTopo2</th>
-          <th>Prof2</th>
-          <th>NFund2</th>
-          <th>Dist.</th>
-          <th>DN</th>
-          <th>Decliv.</th>
-          <th>Vazão</th>
-          <th>Lâmina</th>
-          <th>T.Trat.</th>
-          <th>Veloc.</th>
-        </tr>
-      </thead>
-      <tbody>
-        { elements?.map(el => renderReadOnlyRow(el))}
-      </tbody>
-    </StyledSheet>
-  );
- */
-
 }
 
 const StyledSheet = styled(ReactDataSheet)`
   width: 90%;
+  border: 1px solid #cccccc;
   
-  table, th, td, tr {
+  table, th, td {
     padding: 0;
     margin: 0;
     border-collapse: collapse;
-    border: 1px solid #cccccc;
   }
 `;
 
