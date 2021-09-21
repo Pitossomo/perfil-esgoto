@@ -31,30 +31,47 @@ const DataSheet = ({elements}) => {
   ])});
 
   return (
-    <StyledSheet
+    <ReactDataSheet
       data={dataArray}
       valueRenderer={cell => cell.value}
       sheetRenderer={(props) => (
-        <table>
+        <StyledSheet>
           <Header />
           <tbody>
             {props.children}
           </tbody>
-        </table>
+        </StyledSheet>
       )}
       //onCellsChanged={changes => onChange(changes)}
     />
   );
 }
 
-const StyledSheet = styled(ReactDataSheet)`
-  width: 90%;
+// Style for Sheet elements
+const StyledSheet = styled.table`
+  border-spacing: 0px;
   border: 1px solid #cccccc;
+  border-collapse: collapse;
   
-  table, th, td {
+  th, td {
     padding: 0;
     margin: 0;
+    border-spacing: 0px;
+    border: 1px solid #cccccc;
     border-collapse: collapse;
+    width: 45px;
+  }
+
+  td {
+    text-align: right;
+  }
+
+  input {
+    padding: 0;
+    border: 0;
+    margin: 0;
+    text-align: right;
+    max-width: 40px;
   }
 `;
 
