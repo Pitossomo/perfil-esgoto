@@ -1,6 +1,5 @@
-import styled from "styled-components";
 import ReactDataSheet from "react-datasheet";
-import { Header } from "./Header";
+import { rowRenderer, sheetRenderer } from "./helperMethods";
 
 const DataSheet = ({elements}) => {
   //const column = ["id","nt1","prof1","nf1","nt2","prof2","nf2","dist","diam","decl.","vazao", "yD", "ttrat", "veloc"];
@@ -34,53 +33,11 @@ const DataSheet = ({elements}) => {
     <ReactDataSheet
       data={dataArray}
       valueRenderer={cell => cell.value}
-      sheetRenderer={(props) => (
-        <StyledSheet>
-          <Header />
-          <tbody>
-            {props.children}
-          </tbody>
-        </StyledSheet>
-      )}
-      //onCellsChanged={changes => onChange(changes)}
+      sheetRenderer={sheetRenderer}
+      rowRenderer={rowRenderer}
+      // onCellsChanged={changes => onChange(changes)}
     />
   );
 }
-
-// Style for Sheet elements
-const StyledSheet = styled.table`
-  border-spacing: 0px;
-  border: 1px solid #cccccc;
-  border-collapse: collapse;
-  
-  th, td {
-    padding: 0;
-    margin: 0;
-    border-spacing: 0px;
-    border: 1px solid #cccccc;
-    border-collapse: collapse;
-    width: 45px;
-  }
-
-  td {
-    text-align: right;
-  }
-
-  input {
-    padding: 0;
-    border: 0;
-    margin: 0;
-    text-align: right;
-    max-width: 40px;
-  }
-`;
-
-const TdCenter = styled.td`
-  text-align: center;
-`;
-
-const TdRight = styled.td`
-  text-align: right;
-`;
 
 export default DataSheet;
