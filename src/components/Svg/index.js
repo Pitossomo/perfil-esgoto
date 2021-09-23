@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Lines from "./Lines";
+import useElements from '../../hooks/elementsHooks'
 
-const Svg = ({elements}) => {
+const Svg = () => {
+  const { elements, setElements } = useElements();
+
   const Y_SCALE = -10; // Vertical exageration scale factor;
 
   const svg = useRef();

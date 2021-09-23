@@ -1,19 +1,10 @@
 import ReactDataSheet from "react-datasheet";
 import { rowRenderer, sheetRenderer } from "./helperMethods";
+import useElements from '../../hooks/elementsHooks'
 
-const DataSheet = ({elements}) => {
-  //const column = ["id","nt1","prof1","nf1","nt2","prof2","nf2","dist","diam","decl.","vazao", "yD", "ttrat", "veloc"];
+const DataSheet = () => {
   const NDIGITS = 2;
-  
-  /*
-  const onChange = changes => {
-    const newGrid = grid.map(row => [...row]);
-    changes.forEach(({cell, row, col, value}) => {
-      newGrid[row][col] = {...newGrid[row][col], value};
-    });
-    setGrid({newGrid})
-  }
-  */
+  const { elements, setElements } = useElements();
 
   let dataArray = [];
   elements?.forEach(el => { dataArray.push([
