@@ -25,7 +25,7 @@ const Svg = () => {
       x-padding, y-padding, 
       width + 2*padding, height + 2*padding
     ].join(' '));
-  }, [])
+  }, [elements])
 
   var sumDist=0;
   return (

@@ -1,20 +1,16 @@
+import { columns } from './columns'
+
 export const Header = () => (
   <thead>
     <tr>
-      <th>Id</th>
-      <th>NTopo1</th>
-      <th>Prof1</th>
-      <th>NFund1</th>
-      <th>NTopo2</th>
-      <th>Prof2</th>
-      <th>NFund2</th>
-      <th>Dist.</th>
-      <th>DN</th>
-      <th>Decliv.</th>
-      <th>Vazão</th>
-      <th>Lâmina</th>
-      <th>T.Trat.</th>
-      <th>Veloc.</th>
+      { columns.map(col => (
+        <th key={col.name}> {col.header} </th>
+      ))}
+    </tr>
+    <tr>
+      { columns.map(col => ( 
+        col.name ? <td key={`unit-${col.name}`}>{col.unit}</td> : undefined
+      ))}
     </tr>
   </thead>
 );
