@@ -7,7 +7,7 @@ const Lines = ({x1, x2, nt1, nt2, prof1, prof2, diam, yScale}) => {
       <line // Linha do terreo
         x1={x1topo} x2={x2}
         y1={nt1*yScale} y2={nt2*yScale}
-        stroke="#660000" strokeWidth={1} 
+        stroke="#660000" strokeWidth={0.5} 
       />
       <line // Geratriz superior do tubo
         x1={x1fundo} x2={x2}

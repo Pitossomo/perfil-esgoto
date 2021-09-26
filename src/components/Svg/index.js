@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Lines from "./Lines";
+import PV from "./PV"
 import useElements from '../../hooks/elementsHooks'
+import { Fragment } from "react";
 
 const Svg = () => {
-  const { elements, setElements } = useElements();
+  const { elements } = useElements();
 
   const Y_SCALE = -10; // Vertical exageration scale factor;
 
@@ -38,13 +40,26 @@ const Svg = () => {
           { elements.map(el => {
             sumDist = sumDist + el.dist;
             return (
-              <Lines key={el.id}
-                {...el}             
-                yScale={Y_SCALE}
-                x1={sumDist - el.dist} x2={sumDist}
-              />
+              <Fragment key={el.id}>
+                <PV
+                  {...el}             
+                  yScale={Y_SCALE}
+                  x1={sumDist-el.dist} x2={sumDist}
+                />
+                <Lines
+                  {...el}             
+                  yScale={Y_SCALE}
+                  x1={sumDist - el.dist} x2={sumDist}
+                />
+              </Fragment>
             )
           })}
+          <PV key={`PVLast`}
+            yScale={Y_SCALE}
+            x1={sumDist}
+            nt1={elements[elements.length-1].nt2}
+            prof1={elements[elements.length-1].prof2}
+          />
         </g>
       </StyledSvg>
     )} </>
