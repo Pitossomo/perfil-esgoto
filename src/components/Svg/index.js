@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, Fragment } from "react";
 import styled from "styled-components";
+import useElements from '../../hooks/elementsHooks'
+
 import Lines from "./Lines";
 import PV from "./PV"
-import useElements from '../../hooks/elementsHooks'
-import { Fragment } from "react";
+import Infos from "./Infos"
 
 const Svg = () => {
   const { elements } = useElements();
@@ -30,6 +31,7 @@ const Svg = () => {
   }, [elements])
 
   var sumDist=0;
+  var yMin = elements.reduce((currentMin, el) => Math.min(currentMin, el.nt1-el.prof1, el.nt2-el.prof2), 0);
   return (
     <> { elements && (
       <StyledSvg ref={svg} viewBox={viewBox}>
@@ -49,6 +51,12 @@ const Svg = () => {
                 <Lines
                   {...el}             
                   yScale={Y_SCALE}
+                  x1={sumDist - el.dist} x2={sumDist}
+                />
+                <Infos
+                  {...el}             
+                  yScale={Y_SCALE}
+                  yMin={yMin}
                   x1={sumDist - el.dist} x2={sumDist}
                 />
               </Fragment>

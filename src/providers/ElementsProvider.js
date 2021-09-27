@@ -14,6 +14,7 @@ const ElementsProvider = ({children}) => {
       prof2: 1.8,
       dist: 80,
       diam: 100,
+      mat: "PVC",
     },
     {
       id: 2,
@@ -23,6 +24,7 @@ const ElementsProvider = ({children}) => {
       prof2: 2,
       dist: 60,
       diam: 100,
+      mat: "PVC",
     },
     {
       id: 3,
@@ -32,6 +34,7 @@ const ElementsProvider = ({children}) => {
       prof2: 1.3,
       dist: 80,
       diam: 150,
+      mat: "PVC",
     }
   ])
   
